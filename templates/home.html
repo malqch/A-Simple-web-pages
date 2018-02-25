@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script type="text/javascript" src={% static 'amovies/js/jquery.js' %}></script>
+    <script type="text/javascript" src={% static 'amovies/js/bootstrap.js' %}></script>
+    <link rel="stylesheet" href="{% static 'amovies/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/bootstrap-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/swiper.css' %}"/>
+    <script type="text/javascript" src="{% static 'amovies/js/swiper.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/reset.css' %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/home.css' %}"/>
+    <script type="text/javascript" src="{% static 'amovies/js/home.js' %}"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'amovies:login' %}">未登录</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <!--<li>
+                    <a href="#">注册</a>
+                </li>
+                <li>
+                    <a href="#">登陆</a>
+                </li>-->
+                <li>
+
+                    <a href="{% url 'amovies:register' %}"><span>注册</span></a>
+                </li>
+
+                <li>
+                    <a href="{% url 'amovies:login' %}"><span>登录</span></a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for movie in movies %}
+                <div class="swiper-slide">
+
+                    <img src="{{ movie.image }}" alt="">
+
+                </div>
+            {% endfor %}
+
+            {#					<div class="swiper-slide">#}
+            {#						<img src="https://cs.vmovier.com/Uploads/Banner/2017/12/18/5a379a0c4bff3.jpg" alt="">#}
+            {#					</div>#}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+
+    <ul class="nav nav-tabs child-nav">
+        <li role="presentation" class="active">
+            <a href="#">最新推荐</a>
+        </li>
+        <li role="presentation">
+            <a href="#">收藏</a>
+        </li>
+
+    </ul>
+
+
+    <ul class="movie_list">
+        {% for movie in movies %}
+            <li>
+            <div class="movie_list_left">
+                <a target="_blank" href="http://app.vmoiver.com/{{movie.postid}}?qingapp=app_new" title="{{ movie.title }}">
+                    <img src="{{ movie.image }}"
+                         alt="超酷一镜到底创意倒放MV《串烧2017》">
+                    <div class="bottom-cover">
+                        <span class="film-time">{{ movie.duration }}</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="movie_list_right">
+                <h2>
+                    <a target="_blank" href="http://app.vmoiver.com/{{movie.postid}}?qingapp=app_new" title="超酷一镜到底创意倒放MV《串烧2017》">
+                        <span>{{ movie.app_fu_title }}</span>
+                    </a>
+                </h2>
+
+                <div class="movie-intro">
+                    {{ movie.app_fu_title }}
+                </div>
+                <div class="movie-like">
+                    <span class="glyphicon glyphicon-heart" style="color: red;"></span>
+                    <span>200</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

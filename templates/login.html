@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <script type="text/javascript" src={% static 'amovies/js/jquery.js' %}></script>
+    <script type="text/javascript" src={% static 'amovies/js/bootstrap.js' %}></script>
+    <link rel="stylesheet" href="{% static 'amovies/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/bootstrap-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/swiper.css' %}"/>
+    <script type="text/javascript" src="{% static 'amovies/js/swiper.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'amovies/css/reset.css' %}"/>
+</head>
+<body>
+
+<form action="{% url 'amovies:dologin' %}" method="post">
+    {% csrf_token %}
+    <div class="container-fluid">
+			<div class="form-info">
+				<form>
+					<div class="form-group">
+						<label for="exampleInputEmail1">用户名</label>
+						<input type="text" name="username" class="form-control" placeholder="请输入用户名">
+						<p class="help-block">请输入6-16位用户名</p>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">密码</label>
+						<input type="password" name="userpassword" class="form-control" placeholder="请输入密码">
+						<p class="help-block">请输入6位以上拼音字母组合密码</p>
+					</div>
+
+					<div class="submit"><button type="submit" class="btn btn-primary">登录</button></div>
+
+				</form>
+			</div>
+    </div>
+{#    <span>用户名:</span><input type="text" name="username">#}
+{#    <br>#}
+{#    <span>密码:</span><input type="password" name="password">#}
+{#    <br>#}
+{#    <input type="submit" value="登录">#}
+</form>
+
+</body>
+</html>
